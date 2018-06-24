@@ -1,0 +1,34 @@
+<form novalidate [formGroup]="reviewForm">
+  <div class="form-group" [ngClass]="{'has-danger': title.invalid && title.dirty, 'has-success': title.valid && title.dirty}">
+      <label for="title">Title</label>
+      <input id="title" type="text" class="form-control" formControlName="title" >
+      <div *ngIf="title.errors && (title.dirty || title.touched)">
+        <p *ngIf="title.errors.required">Title is required</p>
+      </div>
+  </div>
+  <div  class="form-group" [ngClass]="{
+    'has-danger': summary.invalid && 0,
+    'has-success': summary.valid && summary.dirty
+  }">
+      <label for="summary">Summary</label>
+      <input id="summary" type="text" class="form-control" formControlName="summary">
+      <div *ngIf="summary.errors && (summary.dirty || summary.touched)">
+        <p *ngIf="summary.errors.required">Summary is required</p>
+      </div>
+  </div>
+  <div class="form-group"
+       [ngClass]="{
+        'has-danger': rating.invalid && (rating.dirty || rating.touched),
+        'has-success': rating.valid && (rating.dirty || rating.touched)
+      }">
+    <label for="rating">Rating</label>
+    <select class="form-control" id="rating"
+            formControlName="rating" formControlName="rating">
+      <option value="">Please select a rating</option>
+      <option *ngFor="let rat of ratings"
+              [value]="rat">{{rat}}
+      </option>
+    </select>
+  </div>
+  <input class="btn btn-success" (click)="submitReview()" type="submit" value="Submit Review" [disabled]="!reviewForm.valid">
+</form>

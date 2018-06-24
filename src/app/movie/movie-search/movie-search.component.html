@@ -1,0 +1,24 @@
+<div>
+    <input type="text" #title placeholder="movie name"/>
+    <button type="button" class="btn btn-info btn-sm" (click)="getMovieByTitle(title.value)">
+      <span class="glyphicon glyphicon-search"></span> Search 
+    </button>
+<div *ngIf="movie.Title">
+  <ul>
+    <li>Title: {{movie.Title}}
+    </li>
+    <li>Genre: {{movie.Genre}}
+      </li>
+    <li>IMDB rating: {{movie.imdbRating}}
+      </li>
+    <li>Director: {{movie.Director}}
+      </li>
+    <li><p class="well well-sm">Plot: {{movie.Plot}}</p>
+      </li>
+      <img [src]="movie.Poster"/>
+  </ul>
+</div>
+<button  class="btn btn-info btn-sm" (click)="reviewMovieVyTitle(movie.Title)">
+    <span class="glyphicon glyphicon-star"></span> Review 
+</button>
+</div>

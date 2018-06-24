@@ -1,0 +1,15 @@
+<div *ngFor="let headline of headlines">
+<img [src]=headline.urlToImage/>
+<div>
+    {{headline.author}}
+</div>
+<div>
+  {{headline.title}}
+</div>
+<div>
+    {{headline.description}}
+  </div>
+<div>
+  <a [href]=headline.url>Read more</a>
+  </div>
+</div>
