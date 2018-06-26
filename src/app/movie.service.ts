@@ -10,10 +10,6 @@ export class MovieService {
   constructor(private http: HttpClient) { }
   
   getMovieByTitle(title: string):Observable<Movie>{
-    let headers = new HttpHeaders();
-    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
-    return this.http.get<Movie>(`http://${window.location.hostname}:8070/getMovieByTitle?title=${title}`,{
-      headers: headers 
-    });
+    return this.http.get<Movie>(`http://www.omdbapi.com/?apikey=d4051203&t=${title}`);
   }
 }
