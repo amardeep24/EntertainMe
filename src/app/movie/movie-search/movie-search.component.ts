@@ -32,15 +32,17 @@ export class MovieSearchComponent implements OnInit, OnDestroy {
   }
   getMovieByTitle(){
     let title = this.searchForm.get("searchQuery").value;
+    this.log.info("Searched for " ,title)
     this.subscription = this.movieService.getMovieByTitle(title).subscribe(data=>{
       this.movie = data;
     });
   }
   reviewMovieVyTitle(title: string){
+    this.log.warn("Navigation occured")
     this.router.navigate(['movie/review']);
   }
   ngOnDestroy(){
-    this.log.warn("Component ngOnDestroy Called", this.movie)
+    this.log.warn("Component ngOnDestroy called", this.movie)
     if(this.subscription){
       this.subscription.unsubscribe();
     }

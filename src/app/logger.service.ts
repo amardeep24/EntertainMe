@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+const DAYS:string[]=['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
 @Injectable()
 export class LoggerService {
 
@@ -9,29 +11,28 @@ export class LoggerService {
   constructor() { }
 
   info(msg: string, ...params:any[]){
-    console.info(this.formatMessageForLog(msg,params));
+    console.info(this.formatMessageForLog(msg,LogLevel.info,params));
   }
   debug(msg: string, ...params:any[]){
-    console.debug(this.formatMessageForLog(msg,params));
+    console.debug(this.formatMessageForLog(msg,LogLevel.debug,params));
   }
   log(msg: string, ...params:any[]){
-    console.log(this.formatMessageForLog(msg,params));
+    console.log(this.formatMessageForLog(msg,LogLevel.log,params));
   }
   error(msg: string, ...params:any[]){
-    console.error(this.formatMessageForLog(msg,params));
+    console.error(this.formatMessageForLog(msg,LogLevel.error,params));
   }
   warn(msg: string, ...params:any[]){
-    console.warn(this.formatMessageForLog(msg,params));
+    console.warn(this.formatMessageForLog(msg,LogLevel.error,params));
   }
 
   private getTimeStamp():string{
     let currentTimestamp:Date = new Date();
-    const days:string[]=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
-    let currentTimeStampString = `${currentTimestamp.getFullYear()}:${currentTimestamp.toLocaleString('en',{month:'long'})}:${days[currentTimestamp.getDay() - 1]}:${currentTimestamp.getHours()}:${currentTimestamp.getMinutes()}:${currentTimestamp.getSeconds()}:`;
+    let currentTimeStampString = `${currentTimestamp.getFullYear()}:${currentTimestamp.toLocaleString('en',{month:'long'})}:${DAYS[currentTimestamp.getDay()]}:${currentTimestamp.getHours()}:${currentTimestamp.getMinutes()}:${currentTimestamp.getSeconds()}:`;
     return currentTimeStampString;
   }
-  private formatMessageForLog(msg:string, ...params:any[]):string{
-    let messageWithTimeStamp:string = this.isTimeStampEnabled?this.getTimeStamp()+" "+msg:msg;
+  private formatMessageForLog(msg:string,logLevel:string,...params:any[]):string{
+    let messageWithTimeStamp:string = this.isTimeStampEnabled?this.getTimeStamp()+": "+logLevel+": "+msg:msg;
     let messgeToLog:string = params?messageWithTimeStamp+" "+this.getStringFromParams(params):messageWithTimeStamp;
     return messgeToLog;
   }
@@ -54,10 +55,10 @@ export class LoggerService {
 
 }
 
-enum LogLevel{
- All= 0,
- debug = 1,
- info = 2,
- warn = 3,
- error = 4
+class LogLevel{
+ public static log:string = "LOG";
+ public static debug:string = "DEBUG";
+ public static info:string = "INFO";
+ public static warn:string = "WARN";
+ public static error:string = "ERROR";
 }
