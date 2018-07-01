@@ -1,15 +1,18 @@
-<div *ngFor="let headline of headlines">
-<img class="img" [src]=headline.urlToImage/>
+<div *ngFor="let headline of headlines" class="text-center">
 <div>
-    {{headline.author}}
+    <strong>{{headline.author}}</strong>
 </div>
-<div>
-  {{headline.title}}
-</div>
-<div>
+  <div>
+      <strong>{{headline.title}}</strong>
+  </div>
+  <div  class="well well-sm">
     {{headline.description}}
+    <div>
+        <a [href]=headline.url>Read more</a>
+    </div>
   </div>
-<div>
-  <a [href]=headline.url>Read more</a>
+  <div>
+      <img class="img" [src]=headline.urlToImage/>
   </div>
+  <br>
 </div>
