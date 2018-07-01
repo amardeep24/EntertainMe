@@ -10,6 +10,6 @@ export class MovieService {
   constructor(private http: HttpClient) { }
   
   getMovieByTitle(title: string):Observable<Movie>{
-    return this.http.get<Movie>(`http://www.omdbapi.com/?apikey=d4051203&t=${title}`);
+    return this.http.get<Movie>(`https://www.omdbapi.com/?apikey=d4051203&t=${title}`);
   }
 }

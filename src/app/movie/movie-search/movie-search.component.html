@@ -1,18 +1,23 @@
 <div>
-  <form [formGroup]="searchForm" class="form">
-    <input class="form-control" type="text" placeholder="Search for a movie" formControlName="searchQuery"/>
-    <br>
-    <button type="button" class="btn btn-info btn-sm" [disabled]='searchForm.invalid' (click)="getMovieByTitle()">
-      <span class="glyphicon glyphicon-search"></span> Search 
-    </button>
-    <div class="alert  alert-danger" *ngIf="searchForm.get('searchQuery').hasError('minlength') && (searchForm.get('searchQuery').dirty || searchForm.get('searchQuery').touched)">
-      Please enter atleast 3 characters for a search
-    </div>
-    <br>
-    <div (click)="setSearchQueryValue()" *ngIf="searchSuggestion">
+  <div class="col-sm-8 col-sm-offset-4">
+    <form [formGroup]="searchForm" class="form">
+      <div class="form-group">
+          <input style="width:50%" class="form-control input-lg" type="text" placeholder="Search for a movie" formControlName="searchQuery"/>
+          <br>
+          <button type="button" class="btn btn-info col-sm-2 col-sm-offset-2" [disabled]='searchForm.invalid' (click)="getMovieByTitle()" align="center">
+            <span class="glyphicon glyphicon-search"></span> Search 
+          </button>
+          <br><br>
+          <div class="alert  alert-danger col-lg-6" *ngIf="searchForm.get('searchQuery').hasError('minlength') && (searchForm.get('searchQuery').dirty || searchForm.get('searchQuery').touched)">
+            Please enter atleast 3 characters for a movie search!
+          </div>
+          <br>
+      </div>
+    </form>
+  <div (click)="setSearchQueryValue()" *ngIf="searchSuggestion" class="col-sm-offset-2">
       <strong style="color:blue">Did you mean {{searchSuggestion}} ?</strong> 
-    </div>
-  </form>
+  </div>
+</div>
   <br>
 <div *ngIf="movie.Title">
   <ul>
@@ -24,14 +29,17 @@
       </li>
     <li>Director: {{movie.Director}}
       </li>
-    <li><p class="well well-sm">Plot: {{movie.Plot}}</p>
+    <li><p class="well well-sm col-sm-8">Plot: {{movie.Plot}}</p>
       </li>
-      <img [src]="movie.Poster"/>
   </ul>
+  <br><br>
 </div>
-<div *ngIf="movie.Title">
-  <button  class="btn btn-info btn-sm" (click)="reviewMovieVyTitle(movie.Title)">
-      <span class="glyphicon glyphicon-star"></span> Review 
-  </button>
+<br>
+<div *ngIf="movie.Title" >
+    <button  class="btn btn-info btn-md col-sm-2 col-sm-offset-5" (click)="reviewMovieVyTitle(movie.Title)">
+        <span class="glyphicon glyphicon-star"></span> Review 
+    </button>
 </div>
+<br><br><br>
+<img *ngIf="movie.Title" class="col-sm-4 col-sm-offset-4" [src]="movie.Poster"/>
 </div>
