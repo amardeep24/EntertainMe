@@ -6,6 +6,7 @@ import { MovieService } from "./movie.service";
 import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import { SportsService } from './sports.service';
+import { LoggerService } from './logger.service';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { SportsService } from './sports.service';
     BrowserModule,
     HttpClientModule
   ],
-  providers: [MovieService, SportsService],
+  providers: [MovieService, SportsService, LoggerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

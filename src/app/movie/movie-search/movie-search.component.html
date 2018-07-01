@@ -1,8 +1,19 @@
 <div>
-    <input type="text" #title placeholder="movie name"/>
-    <button type="button" class="btn btn-info btn-sm" (click)="getMovieByTitle(title.value)">
+  <form [formGroup]="searchForm" class="form">
+    <input class="form-control" type="text" placeholder="Search for a movie" formControlName="searchQuery"/>
+    <br>
+    <button type="button" class="btn btn-info btn-sm" [disabled]='searchForm.invalid' (click)="getMovieByTitle()">
       <span class="glyphicon glyphicon-search"></span> Search 
     </button>
+    <div class="alert  alert-danger" *ngIf="searchForm.get('searchQuery').hasError('minlength') && (searchForm.get('searchQuery').dirty || searchForm.get('searchQuery').touched)">
+      Please enter atleast 3 characters for a search
+    </div>
+    <br>
+    <div (click)="setSearchQueryValue()" *ngIf="searchSuggestion">
+      <strong style="color:blue">Did you mean {{searchSuggestion}} ?</strong> 
+    </div>
+  </form>
+  <br>
 <div *ngIf="movie.Title">
   <ul>
     <li>Title: {{movie.Title}}
@@ -18,7 +29,9 @@
       <img [src]="movie.Poster"/>
   </ul>
 </div>
-<button  class="btn btn-info btn-sm" (click)="reviewMovieVyTitle(movie.Title)">
-    <span class="glyphicon glyphicon-star"></span> Review 
-</button>
+<div *ngIf="movie.Title">
+  <button  class="btn btn-info btn-sm" (click)="reviewMovieVyTitle(movie.Title)">
+      <span class="glyphicon glyphicon-star"></span> Review 
+  </button>
+</div>
 </div>
