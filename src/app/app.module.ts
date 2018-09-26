@@ -9,6 +9,7 @@ import { SportsService } from './sports.service';
 import { LoggerService } from './logger.service';
 import { AuthService } from './auth/auth.service';
 import { AuthGuardService } from './auth/auth-guard.service';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -17,9 +18,10 @@ import { AuthGuardService } from './auth/auth-guard.service';
   imports: [
     AppRoutingModule,
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    AuthModule.forRoot(),
   ],
-  providers: [MovieService, SportsService, LoggerService, AuthService, AuthGuardService],
+  providers: [MovieService, SportsService, LoggerService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
