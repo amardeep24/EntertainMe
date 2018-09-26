@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SportsComponent } from './sports/sports.component';
 import { SportsHeadlinesComponent } from './sports-headlines/sports-headlines.component';
+import { AuthGuardService } from '../auth/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -10,7 +11,8 @@ const routes: Routes = [
     children: [
       {
         path: 'headlines',
-        component: SportsHeadlinesComponent
+        component: SportsHeadlinesComponent,
+        canActivate: [AuthGuardService]
       }
      
     ]

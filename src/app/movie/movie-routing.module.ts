@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MovieSearchComponent } from './movie-search/movie-search.component';
 import { MovieReviewComponent } from './movie-review/movie-review.component';
 import { MovieComponent } from './movie/movie.component';
+import { AuthGuardService } from '../auth/auth-guard.service';
 
 const ROUTES: Routes = [
   {
@@ -12,11 +13,13 @@ const ROUTES: Routes = [
     children: [
       {
         path: 'review',
-        component: MovieReviewComponent
+        component: MovieReviewComponent,
+        canActivate: [AuthGuardService]
       },
       {
         path: 'search',
-        component: MovieSearchComponent
+        component: MovieSearchComponent,
+        canActivate: [AuthGuardService]
       }
      
     ]

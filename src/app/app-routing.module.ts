@@ -1,5 +1,8 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { HomeComponent } from './home/home/home.component';
+ import { NgModule } from '@angular/core';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthModule } from './auth/auth.module';
+import { HomeModule } from './home/home.module';
 
 const ROUTES: Routes = [
   {
@@ -11,14 +14,18 @@ const ROUTES: Routes = [
     loadChildren: 'app/sports/sports.module#SportsModule'
   },
   {
+    path: 'home',
+    component: HomeComponent
+  },
+  {
     path: '',
-    redirectTo: '/movie',
+    redirectTo: '/home',
     pathMatch: 'full'
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(ROUTES)],
+  imports: [AuthModule,HomeModule, RouterModule.forRoot(ROUTES, {preloadingStrategy: PreloadAllModules})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

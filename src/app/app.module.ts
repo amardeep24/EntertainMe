@@ -7,6 +7,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import { SportsService } from './sports.service';
 import { LoggerService } from './logger.service';
+import { AuthService } from './auth/auth.service';
+import { AuthGuardService } from './auth/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,7 @@ import { LoggerService } from './logger.service';
     BrowserModule,
     HttpClientModule
   ],
-  providers: [MovieService, SportsService, LoggerService],
+  providers: [MovieService, SportsService, LoggerService, AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
