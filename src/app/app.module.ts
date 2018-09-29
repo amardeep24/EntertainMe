@@ -21,7 +21,7 @@ import { AuthModule } from './auth/auth.module';
     HttpClientModule,
     AuthModule.forRoot(),
   ],
-  providers: [MovieService, SportsService, LoggerService, AuthGuardService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

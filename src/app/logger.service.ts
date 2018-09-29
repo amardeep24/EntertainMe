@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 
 const DAYS:string[]=['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class LoggerService {
 
   logLevel: LogLevel;

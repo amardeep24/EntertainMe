@@ -4,7 +4,9 @@ import { Observable } from 'rxjs/Observable';
 
 const API_KEY: string = "c51b87f4c8124aaca61f8e9da7420cab";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class SportsService {
 
   constructor(private http: HttpClient) { }

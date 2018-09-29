@@ -4,7 +4,9 @@ import { Movie } from "./movie";
 import { Observable } from "rxjs/Observable";
 import { HttpHeaders } from "@angular/common/http";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class MovieService {
 
   constructor(private http: HttpClient) { }
