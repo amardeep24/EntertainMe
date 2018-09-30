@@ -12,7 +12,6 @@ export class AuthService {
   signIn(username: string, password: string){
     if(this.authenticate(username,password)){
       this.authenticated = true;
-      this.router.navigate(['/movie']);
     }
   }
 

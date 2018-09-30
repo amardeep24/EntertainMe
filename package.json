@@ -16,6 +16,7 @@
     "@angular/common": "6.1.9",
     "@angular/compiler": "6.1.9",
     "@angular/core": "6.1.9",
+    "@angular/fire": "^5.0.2",
     "@angular/forms": "6.1.9",
     "@angular/http": "6.1.9",
     "@angular/platform-browser": "6.1.9",
@@ -23,6 +24,7 @@
     "@angular/router": "6.1.9",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
+    "firebase": "^5.5.2",
     "jquery": "^3.3.1",
     "rxjs": "^6.3.3",
     "zone.js": "^0.8.26"

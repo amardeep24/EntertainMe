@@ -1,21 +1,25 @@
-import { AuthService } from './auth.service';
 import { NgModule, ModuleWithProviders, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SignInComponent } from './sign-in/sign-in.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { SignUpComponent } from './sign-up/sign-up.component';
+import { environment } from '../../../environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { StorageService } from '../storage-service.service';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireDatabaseModule,
+    AngularFireStorageModule
   ],
-  declarations: [SignInComponent, SignUpComponent],
-  exports:[SignUpComponent, SignInComponent]
+  declarations: []
 })
-export class AuthModule { 
-  
-  /**
+export class SharedModule { 
+
+/**
    * This is to prevent multiple imports in modules other than root module, the @SkipSelf
    * decorator tells to look for an instance in the parent injector. If every thing is in order
    * that is this module is only imported in root module then the there will be no parent of the root inject and
@@ -26,17 +30,17 @@ export class AuthModule {
    * 
    * @param parentModule 
    */
-  constructor(@Optional() @SkipSelf() parentModule: AuthModule){
+  constructor(@Optional() @SkipSelf() parentModule: SharedModule){
     if (parentModule) {
       throw new Error(
-        'AuthModule is already loaded. Import it in the AppModule only');
+        'SharedModule is already loaded. Import it in the AppModule only');
     }
   }
 
   static forRoot(): ModuleWithProviders {
     return {
-      ngModule: AuthModule,
-      providers: [AuthService]
+      ngModule: SharedModule,
+      providers: [StorageService]
     };
   }
 }
